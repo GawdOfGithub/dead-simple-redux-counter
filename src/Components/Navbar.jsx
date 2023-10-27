@@ -1,19 +1,19 @@
 import useMainContext from "../Helpers/useMainContext";
 import Sidebar from "./Sidebar";
 const Navbar = () => {
-    const {setToggleSidebar} = useMainContext()
+    const {toggleSidebar,setToggleSidebar} = useMainContext()
   return (
     <>
     <Sidebar/>
     <div className="fixed w-full bg-black min-h-content text-white ">
       <div className="flex justify-between items-center px-4 py-2">
         <div className="text-2xl">
-          <button className="bg-black text-white" onClick={()=>setToggleSidebar(true)} >
+          <button className="bg-black text-white" onClick={()=>setToggleSidebar(!toggleSidebar)} >
             <span>☰</span>
           </button>
         </div>
         <a href="/" className="text-yellow-500 text-2xl font-bold">
-          <span>CounterApp</span>
+          <span>ToDoApp</span>
         </a>
         <button className="bg-black text-white">
           <span>🔍</span>
