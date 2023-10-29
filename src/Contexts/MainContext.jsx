@@ -6,10 +6,11 @@ const MainContext = createContext();
 
 export default function MainContextProvider({ children }) {
     const [toggleSidebar, setToggleSidebar] = useState(false);
+    const [text, setText] = useState("");
 
   return (
     <MainContext.Provider value={{
-        toggleSidebar,setToggleSidebar
+        toggleSidebar,setToggleSidebar,text,setText
     
     }}>
       {children}
