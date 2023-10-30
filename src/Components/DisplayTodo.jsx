@@ -3,7 +3,7 @@ import { filterTodo } from '../app/features/counter/todoSlice';
 
 const DisplayTodo = () => {
     const dispatch = useDispatch()
-  const todoList = useSelector((state) => state.todo.value);
+  const todoList = useSelector((state) => state.todo);
   console.log(todoList);
 
   return (

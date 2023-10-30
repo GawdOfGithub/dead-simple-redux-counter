@@ -7,9 +7,10 @@ import DisplayTodo from "./DisplayTodo";
 
 const Todo = () => {
   const dispatch = useDispatch();
-  const todoList = useSelector((state) => state.todo.value);
+  const todoList = useSelector((state) => state.todo);
   const id = nanoid();
   const [todo, setTodo] = useState("");
+  const [a,setA] = useState(0)
 
 
 
@@ -26,8 +27,12 @@ const Todo = () => {
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-3 rounded-3xl"
           onClick={() => {
+            console.log(todo);
+            console.log(a);
+             setA((a)=>a+1)
             dispatch(addTodo(
-              todo
+              todo, 
+               a
               
             ));
           }}
