@@ -1,27 +1,72 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { nanoid } from "@reduxjs/toolkit";
 
-const initialState = [{todo:"hi",a:"1"}]
+const initialState = []
 export const todoSlice = createSlice({
   name: "todo",
   initialState,
   reducers: {
     addTodo:{ 
     reducer:(state, action) => {
-      console.log(action.payload,"This iss the payload");
-      console.log(action.payload);
+      
+      console.table(action.payload);
     
       state.push(action.payload)
     },
 
-    prepare: (todo,a) => {
+    prepare: (todo,isChecked,isEditable,) => {
       const id = nanoid()
-      return { payload: { todo,a,id } }
+      return { payload: {id,todo,isChecked,isEditable } }
     }
    
   },
+  
+  deleteTodo:{
+    reducer:(state,action)=>
+    {
+      const id = action.payload
+      state.filter(item=> item.id!==id)
+    }
+
+  },
+  checkTodo:{
+    reducer:(state,action)=>
+    {
+      const id = action.payload
+      state = state.map((item)=>
+      {
+        if(item.id!==id)
+        {
+          return item
+        }
+        else
+        {
+          return {...item,isChecked:!item.isChecked}
+        }
+      }
+      )
+    }
+  },
+  editTodo:{
+    reducer:(state,action)=>
+    {
+     const id = action.payload
+     state = state.map((item)=>
+     {
+       if(item.id!==id)
+       {
+         return item
+       }
+       else
+       {
+         return {...item,isEditable:!item.isEditable}
+       }
+     })
+
+    }
+  }
 }
 });
 
-export const { addTodo, filterTodo } = todoSlice.actions;
+export const { addTodo,deleteTodo,editTodo,checkTodo } = todoSlice.actions;
 export default todoSlice.reducer;
