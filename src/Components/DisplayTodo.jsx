@@ -5,21 +5,21 @@ import useMainContext from '../Contexts/Helpers/useMainContext';
 const DisplayTodo = () => {
     const {text} = useMainContext()
   const dispatch = useDispatch();
-  const todoList = useSelector((state) => state.todo.value);
+  const todoList = useSelector((state) => state.todo);
   const handleCheckboxChange = (id) => {
     
-    // Dispatch the checkTodo action with the item's id to toggle its state
+     console.log(id);
     dispatch(checkTodo(id));
   };
   const handleSave = (id)=>
   {
-    console.log(id);
-    console.log(text);
+   
+    
     dispatch(saveTodo({id:id,text:text}))     
      
   }
   
-  console.log(todoList);
+  
 
   return (
     <>
@@ -27,21 +27,21 @@ const DisplayTodo = () => {
         <div key={index}>
           <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white font-extrabold p-2 rounded-lg shadow-lg mt-2">
             
-           {!item.todoData.isEditable ? (<>{index+1}.{item.todoData.todo}</>):<Editor/>}
+           {!item.isEditable ? (<>{index+1}.{item.todo}</>):<Editor/>}
            {
-            !item.todoData.isEditable?
+            !item.isEditable?
            (<>
            <input
               type="checkbox"
-              checked={item.todoData.isChecked} // Use the isChecked state from the item
-              onChange={() => handleCheckboxChange(item.todoData.id)}
+              checked={item.isChecked} // Use the isChecked state from the item
+              onChange={() => handleCheckboxChange(item.id)}
             />
-           <button onClick={() => dispatch(editTodo(item.todoData.id))}>
+           <button onClick={() => dispatch(editTodo(item.id))}>
             <>✏️</></button>
-            <button onClick={() => dispatch(filterTodo(item.todoData.id))}>❌</button>
+            <button onClick={() => dispatch(filterTodo(item.id))}>❌</button>
             </>):
             <>
-            <button className="bg-black hover:bg-blue-700 text-white font-bold px-1 rounded ml-2" onClick={()=>handleSave(item.todoData.id,text)} >Save</button>
+            <button className="bg-black hover:bg-blue-700 text-white font-bold px-1 rounded ml-2" onClick={()=>handleSave(item.id,text)} >Save</button>
             </>
             
         }

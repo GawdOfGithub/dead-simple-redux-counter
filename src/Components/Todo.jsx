@@ -1,6 +1,6 @@
 import { useState} from "react";
 import { useDispatch } from "react-redux";
-import { nanoid } from "@reduxjs/toolkit";
+
 import { addTodo } from "../app/features/counter/todoSlice";
 import DisplayTodo from "./DisplayTodo";
 
@@ -23,13 +23,8 @@ const Todo = () => {
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-3 rounded-3xl"
           onClick={() => {
-            dispatch(addTodo(
-              {id:nanoid(),
-                todo:todo,
-                isChecked:false,
-                isEditable:false,
+            dispatch(addTodo(todo,false,false
 
-              } 
             ));
           }}
         >
