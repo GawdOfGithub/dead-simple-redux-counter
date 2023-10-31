@@ -6,11 +6,9 @@ const Sidebar = () => {
       <>
       {toggleSidebar ? ( 
     
-      <div className="fixed w-64 bg-black h-screen text-white mt-7">
+      <div className="fixed w-64 bg-black h-screen text-white mt-7 z-50">
         <div className="px-4 py-6">
-          <button className="border-b border-gray-500 text-white text-xl font-semibold py-2" onClick={()=>setToggleSidebar(false)}>
-            <span>✕</span>
-          </button>
+          
           <a
             href="/"
             className="block border-b border-gray-500 text-white text-xl font-semibold py-2 mt-6 hover:text-yellow-500 transition duration-300"

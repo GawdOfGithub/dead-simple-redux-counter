@@ -1,19 +1,42 @@
 
-import Navbar from './Components/Navbar'
-import Todo from './Components/Todo'
+import AppLayout from './AppLayout'
+import { createBrowserRouter,RouterProvider } from 'react-router-dom'
+import Home  from './Pages/Home'
+import ErrorPage from './Pages/ErrorPage'
+import  ResetPassword  from './Pages/ResetPassword'
+import  Register  from './Pages/Register'
+import  LoginPage  from './Pages/LoginPage'
 
 
-
-export default function App() {
+ const App = () => {
+  const router = createBrowserRouter([
+    {
+       element:<AppLayout/>,
+       errorElement:<ErrorPage/>,
+      children:[
+        {
+          path:'/',
+          element:<Home/>, 
+        },
+              {
+              path:'/login',
+              element:<LoginPage/>
+              },
+           
+              {
+                path:'/resetPassword',
+                element:<ResetPassword/>
+                },
+                {
+                  path:'/register',
+                  element:<Register/>
+                  }
+                  
+      ]
+    }
+  ])
   return (
-    <>
-    <div className="min-h-full min-w-full">
-      
-    <Navbar/>
-
-    <Todo/>
-    
-    </div>
-    </>
+    <RouterProvider router={router}/>
   )
 }
+export default App
